@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+    Richard Kaune
+    May 10, 2022
+    Target.cs
+    Implementation of Bonus Features 5
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,7 +58,8 @@ public class Target : MonoBehaviour
         Destroy(gameObject);
         if (!gameObject.CompareTag("Bad"))
         {
-            gameManager.GameOver();
+            //gameManager.GameOver();
+            gameManager.UpdateLives(-1);
         }
     }
 

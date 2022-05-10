@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿/*
+    Richard Kaune
+    May 10, 2022
+    GameManager.cs
+    Implementation of Bonus Features 5
+*/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -11,8 +18,10 @@ public class GameManager : MonoBehaviour
     private float spawnRate = 1.0f;
 
     private int score;
+    private int lives;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI livesText;
     public Button restartButton;
     public GameObject titleScreen;
 
@@ -46,6 +55,16 @@ public class GameManager : MonoBehaviour
         scoreText.text = $"Score: {score}";
     }
 
+    public void UpdateLives(int livesToChange)
+    {
+        lives += livesToChange;
+        livesText.text = "Lives: " + lives;
+        if (lives <= 0)
+        {
+            GameOver();
+        }
+    }
+
     public void GameOver()
     {
         isGameActive = false;
@@ -66,6 +85,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(SpawnTarget());
         UpdateScore(0);
+        UpdateLives(3);
 
         titleScreen.gameObject.SetActive(false);
     }
